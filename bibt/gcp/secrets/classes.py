@@ -1,6 +1,7 @@
 import json
 import logging
 
+import google.auth.transport.requests
 from google.cloud import secretmanager
 
 _LOGGER = logging.getLogger(__name__)
@@ -16,6 +17,12 @@ class Client:
 
     def __init__(self, credentials=None):
         self._client = secretmanager.SecretManagerServiceClient(credentials=credentials)
+
+    def _ensure_valid_client(self):
+        if not self._client._transport._credentials.valid:
+            request = google.auth.transport.requests.Request()
+            self._client._transport._credentials.refresh(request=request)
+        return
 
     def get_secret(
         self,
@@ -69,6 +76,7 @@ class Client:
         _LOGGER.debug(
             f"timeout=[{timeout}] decode=[{decode}] parse_json=[{parse_json}]"
         )
+        self._ensure_valid_client()
         secret = self._client.access_secret_version(
             request={"name": secret_uri},
             timeout=timeout,

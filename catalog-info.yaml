@@ -12,7 +12,7 @@ metadata:
   tags:
     - bits
     - bits-tools
-    - security 
+    - security
   annotations:
     backstage.io/kubernetes-id: bibt-gcp-secrets
     github.com/project-slug: broadinstitute/bibt-gcp-secrets
@@ -25,4 +25,4 @@ spec:
   owner: bits-blue-team
   lifecycle: production
   system: bibt-libraries
-  
+

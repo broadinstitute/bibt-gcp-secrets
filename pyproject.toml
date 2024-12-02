@@ -19,7 +19,7 @@ classifiers = [
   "Topic :: Software Development :: Libraries",
   "Topic :: Utilities",
 ]
-dependencies = ["google-cloud-secret-manager==2.17.0"]
+dependencies = ["google-cloud-secret-manager==2.21.1"]
 description = "Functionality often used by BITS Blue Team (GCP Secret Manager)."
 name = "bibt-gcp-secrets"
 readme = { file = "README.md", content-type = "text/markdown" }
